@@ -4,6 +4,7 @@ import Common.DataObjectToSend;
 import Common.exceptions.NoSuchCommandException;
 
 import java.sql.*;
+import java.time.format.DateTimeFormatter;
 import java.util.NoSuchElementException;
 
 public class ServerConsole {
@@ -53,6 +54,18 @@ public class ServerConsole {
             userName = dataObjectToSend.getUserName();
             System.setProperty("username", userName);
             userPass = dataObjectToSend.getUserPass();
+
+            if (dataObjectToSend.getName().equals("NEW_USER")) {
+                Class.forName("org.postgresql.Driver");
+                c = DriverManager.getConnection("jdbc:postgresql://localhost:5433/studyGroupCollection",
+                        "postgres", "12345678");
+                stmt = c.createStatement();
+                String sql = "INSERT INTO USERS (USER_NAME,USER_PASSWORD) "
+                        + "VALUES ('" + dataObjectToSend.getUserName() + "', '" + dataObjectToSend.getUserPass() + "')";
+                stmt.executeUpdate(sql);
+                stmt.close();
+                c.close();
+            }
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();

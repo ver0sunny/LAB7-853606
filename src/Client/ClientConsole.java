@@ -1,6 +1,7 @@
 package Client;
 
 import Common.DataObjectToSend;
+import Common.Md5Coder;
 import Common.Parameters;
 import Common.exceptions.NoSuchCommandException;
 
@@ -49,18 +50,20 @@ public class ClientConsole {
                 }
                 if (userSignedUp) {
                     ClientConsole.println("––__––please enter password––__––");
-                    password = userInput.nextLine().trim();
+                    password = Md5Coder.md5Custom(userInput.nextLine().trim());
                     if (password.equals(passes[userNumber])) {
                         ClientConsole.println("––__––you've logged in successfully––__––");
                         dataObjectToReply.setUserPass(password);
+                        dataObjectToReply.setName("AUTHORIZED_USER");
                         break;
 
                     } else {
                         ClientConsole.println("––__––wrong password - try again––__––");
-                        password = userInput.nextLine().trim();
+                        password = Md5Coder.md5Custom(userInput.nextLine().trim());
                         if (password.equals(passes[userNumber])) {
                             ClientConsole.println("––__––you've logged in successfully––__––");
                             dataObjectToReply.setUserPass(password);
+                            dataObjectToReply.setName("AUTHORIZED_USER");
                             break;
                         }
                     }
@@ -81,9 +84,10 @@ public class ClientConsole {
                             }
                             dataObjectToReply.setUserName(username);
                             ClientConsole.println("––__––create password––__––");
-                            password = userInput.nextLine().trim();
+                            password = Md5Coder.md5Custom(userInput.nextLine().trim());
                             dataObjectToReply.setUserPass(password);
                             ClientConsole.println("––__––you've signed up successfully––__––");
+                            dataObjectToReply.setName("NEW_USER");
                             break;
 
                         case ("NO"):
@@ -108,9 +112,10 @@ public class ClientConsole {
                         }
                         dataObjectToReply.setUserName(username);
                         ClientConsole.println("––__––create password––__––");
-                        password = userInput.nextLine().trim();
+                        password = Md5Coder.md5Custom(userInput.nextLine().trim());
                         dataObjectToReply.setUserPass(password);
                         ClientConsole.println("––__––you've signed up successfully––__––");
+                        dataObjectToReply.setName("NEW_USER");
                         break;
 
                     case ("NO"):

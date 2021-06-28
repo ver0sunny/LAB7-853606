@@ -30,10 +30,17 @@ public class Main {
 //            stmt.executeUpdate(sql);
 //            stmt.close();
 
-            stmt = c.createStatement();
-            String sql = "INSERT INTO USERS (USER_NAME,USER_PASSWORD) VALUES ('gg',2)";
-            stmt.executeUpdate(sql);
-            stmt.close();
+//            stmt = c.createStatement();
+//            String sql = "INSERT INTO USERS (USER_NAME,USER_PASSWORD) VALUES ('gg',2)";
+//            stmt.executeUpdate(sql);
+//            stmt.close();
+
+
+//            stmt = c.createStatement();
+//            String sql = "DELETE from USERS where USER_NAME = 'yolo'";
+//            stmt.executeUpdate(sql);
+//            stmt.close();
+//            c.close();
 
 //            stmt = c.createStatement();
 //            String sql = "CREATE TABLE STUDENT_GROUPS " +

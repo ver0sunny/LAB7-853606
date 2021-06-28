@@ -87,6 +87,7 @@ public class CollectionManager {
             stmt.executeUpdate(sql);
             stmt.close();
             c.close();
+            studyGroupsCollection = loadCollection();
 
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
